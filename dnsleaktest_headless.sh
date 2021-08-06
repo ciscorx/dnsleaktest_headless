@@ -20,6 +20,7 @@
 #DSP=:99
 SP1=500000
 SP2=2000000
+BROWSER="chromium --incognito --disk-cache-dir=/tmp" 
 TMPDIR=/tmp/dnsleaktest_tmp
 STEP_TEMP_DIR=/tmp/${0#./}
 SAVEFILE=/tmp/dnsleaktest_results.txt
@@ -101,7 +102,7 @@ fi
 
 sleep 1
 Xvfb $DSP -fbdir $TMPDIR &
-DISPLAY=$DSP chrom_incognito.sh "www.dnsleaktest.com" &
+DISPLAY=$DSP $BROWSER "www.dnsleaktest.com" &
 sleep 4
 
 sleep_until_screen_stops_changing
