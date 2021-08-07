@@ -11,9 +11,9 @@
 #  Requirements: linux, xvfb, xautomation, scrot 0.8-18+,
 #    vivaldi-stable 
 
-#  If the script doesnt work because it fails recognize the web page
-#  button then remove the web page button recognition condition and
-#  replace it with true.  Chances are it will work
+#  If the script doesnt work because it fails recognize the button on
+#    the web page then remove the web page button recognition
+#    condition and replace it with true.  Chances are it will work
 
 #  It doesnt seem work properly when run as root.  Instead issue su
 #    user -c "./dnsleaktest_headless.sh" if you are root.
