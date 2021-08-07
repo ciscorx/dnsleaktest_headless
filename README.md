@@ -4,8 +4,9 @@
     and finding out if your vpn is actually working.  Useful for
     headless servers that arent running a display manager.
 
-  Tested on Raspberry Pi Buster with Chromium 83.0.4103.116
-     The dnsleaktest_headless_vivaldi.sh script has been tested on Buster on 64 bit Vivaldi 2.0.1309.37
+  dnsleaktest_headless.sh script has been tested on Raspberry Pi Buster with Chromium 83.0.4103.116, and on Odroid N2+ Alarm archlinux with Chromium 92.0.4515.131
+  
+  dnsleaktest_headless_vivaldi.sh script has been tested on Buster on 64 bit Vivaldi 2.0.1309.37
      
   Requirements: linux, xvfb, xautomation, scrot 0.8-18+,
     chromium-browser (optionally vivaldi-stable), Imagemagick (for
