@@ -8,8 +8,13 @@
 
 #  Tested on Raspberry Pi Buster with Chromium 83.0.4103.116
 #        and Odroid N2+ Alarm archlinux with Chromium 92.0.4515.131
+#        and Odroid N2+ Ubuntu 20.10 on Xorg with Chromium 92.0.4515.107 snap
 #  Requirements: linux, xvfb, xautomation, scrot 0.8-18+,
 #    chromium-browser 
+
+#  If the script doesnt work because it fails to recognize the web
+#  page button then set then remove the web page button recognition
+#  condition and replace it with true.  Chances are it will work
 
 #  It doesnt seem work properly when run as root.  Instead issue su
 #    user -c "./dnsleaktest_headless.sh" if you are root.
@@ -125,7 +130,8 @@ md5=`md5sum /tmp/t.ppm | awk '{print $1}'`
 
 #md5=$(get_md5 533 529 105 16)
 step=$(($step + 1)) 
-if [ $md5 = 'e6353fed054eb993b7e6883dd288aa9d' ]|| [ $md5 = '06f4652bb59b56241eca84656c492671' ]; then
+# web page button recognition condition
+if [ $md5 = 'e6353fed054eb993b7e6883dd288aa9d' ]|| [ $md5 = '06f4652bb59b56241eca84656c492671' ] || [ $md5 = '21484566923c7dbe6abf4e7dd5b7588b' ]; then
     DISPLAY=$DSP xte 'mousemove 580 537' 'mouseclick 1' "usleep $SP1"
 
     sleep_until_screen_stops_changing
@@ -158,7 +164,8 @@ DISPLAY=$DSP xte 'mousemove 400 400' 'mouseclick 1' "usleep $SP2"
     DISPLAY=$DSP xte 'keydown Control_L' 'str q' 'keyup Control_L'
     sleep 1
     DISPLAY=$DSP scrot /tmp/dnsleaktest4.png
-
+else
+    echo Error: unable to recognize button on web page in order to click it.
 fi
 
 

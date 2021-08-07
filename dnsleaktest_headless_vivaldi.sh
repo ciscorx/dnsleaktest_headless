@@ -7,9 +7,13 @@
 #    headless servers that arent running a display manager.
 
 #  Tested on Raspberry Pi Buster with 64 bit Vivaldi 2.0.1309.37
-
+#        and Odroid N2+ on Ubuntu 20.10 on Xorg with Vivaldi 2.0.1309.37
 #  Requirements: linux, xvfb, xautomation, scrot 0.8-18+,
 #    vivaldi-stable 
+
+#  If the script doesnt work because it fails recognize the web page
+#  button then remove the web page button recognition condition and
+#  replace it with true.  Chances are it will work
 
 #  It doesnt seem work properly when run as root.  Instead issue su
 #    user -c "./dnsleaktest_headless.sh" if you are root.
@@ -125,7 +129,8 @@ md5=`md5sum /tmp/t.ppm | awk '{print $1}'`
 
 #md5=$(get_md5 533 529 105 16)
 step=$(($step + 1)) 
-if [ $md5 = '939c9a09784ce587d655562a95b2331b' ]; then
+# web page button recognition condition
+if [ $md5 = '939c9a09784ce587d655562a95b2331b' ] || [ $md5 = '40db483d3c01b24479b7a1bd7f0b3e50' ]; then
     DISPLAY=$DSP xte 'mousemove 700 511' 'mouseclick 1' "usleep $SP1"
 
     sleep_until_screen_stops_changing
@@ -158,7 +163,8 @@ DISPLAY=$DSP xte 'mousemove 400 400' 'mouseclick 1' "usleep $SP2"
     DISPLAY=$DSP xte 'keydown Control_L' 'str q' 'keyup Control_L'
     sleep 1
     DISPLAY=$DSP scrot /tmp/dnsleaktest4.png
-
+else
+    echo Error: unable to recognize button on web page in order to click it.
 fi
 
 
